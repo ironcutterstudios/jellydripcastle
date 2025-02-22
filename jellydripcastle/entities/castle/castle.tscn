@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpe22akum3is1"]
+
+[ext_resource type="Texture2D" uid="uid://c7mmwgy6bxxr2" path="res://icon.svg" id="1_t32b6"]
+[ext_resource type="PackedScene" uid="uid://ddd8rwmi8pls3" path="res://components/Castle Health Component/castle_health_component.tscn" id="2_4oyaa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_so5aw"]
+size = Vector2(612, 1198)
+
+[node name="Castle" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 0, 1)
+scale = Vector2(4.60435, 9.12156)
+texture = ExtResource("1_t32b6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_so5aw")
+
+[node name="CastleHealthComponent" parent="." instance=ExtResource("2_4oyaa")]
+
+[node name="Damage Tick Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Damage Tick Timer" to="CastleHealthComponent" method="_on_damage_tick_timer_timeout"]

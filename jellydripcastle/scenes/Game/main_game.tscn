@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://ckycts0nkwthr"]
+[gd_scene load_steps=4 format=3 uid="uid://ckycts0nkwthr"]
 
 [ext_resource type="PackedScene" uid="uid://4g1oy4t21hcg" path="res://entities/player/player.tscn" id="1_20h4g"]
+[ext_resource type="PackedScene" uid="uid://dpe22akum3is1" path="res://entities/castle/castle.tscn" id="2_q2m2p"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_i5nxc"]
 
@@ -12,6 +13,7 @@ offset_bottom = 23.0
 text = "Game"
 
 [node name="Player" parent="." instance=ExtResource("1_20h4g")]
+z_index = 2
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
@@ -21,3 +23,6 @@ position = Vector2(0, 376)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
 scale = Vector2(1.00898, 0.925498)
 shape = SubResource("WorldBoundaryShape2D_i5nxc")
+
+[node name="Castle" parent="." instance=ExtResource("2_q2m2p")]
+position = Vector2(-410, -270)

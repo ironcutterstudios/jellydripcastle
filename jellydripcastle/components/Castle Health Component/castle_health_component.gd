@@ -1,4 +1,4 @@
-class_name HealthComponent
+class_name CastleHealthComponent
 
 extends Node
 
@@ -8,8 +8,11 @@ extends Node
 ## Current health of entity
 @export var current_health : float
 
-## Entity
-@export var body : CharacterBody2D
+## Castle Body
+@export var castle : Area2D
+
+## Castle tick damage
+@export var tick_damage : float
 
 func _ready() -> void:
 	current_health = max_health
@@ -25,4 +28,7 @@ func heal(heal_amount : float):
 		current_health = max_health
 	
 func die():
-	body.call_deferred("queue_free")
+	castle.call_deferred("queue_free")
+
+func _on_damage_tick_timer_timeout() -> void:
+	take_damage(tick_damage)
