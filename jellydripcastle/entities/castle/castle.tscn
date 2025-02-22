@@ -16,8 +16,12 @@ texture = ExtResource("1_t32b6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_so5aw")
 
-[node name="CastleHealthComponent" parent="." instance=ExtResource("2_4oyaa")]
+[node name="CastleHealthComponent" parent="." node_paths=PackedStringArray("castle") instance=ExtResource("2_4oyaa")]
+max_health = 100.0
+castle = NodePath("..")
+tick_damage = 1.0
 
 [node name="Damage Tick Timer" type="Timer" parent="."]
+autostart = true
 
 [connection signal="timeout" from="Damage Tick Timer" to="CastleHealthComponent" method="_on_damage_tick_timer_timeout"]

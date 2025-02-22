@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxx0u15p2dvnk"]
+
+[ext_resource type="Script" path="res://components/Jelly Storage Component/jelly_storage_component.gd" id="1_urry6"]
+
+[node name="JellyStorageComponent" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_urry6")
+max_jelly = 10
+
+[node name="Jelly Storage" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0
+max_value = 10.0

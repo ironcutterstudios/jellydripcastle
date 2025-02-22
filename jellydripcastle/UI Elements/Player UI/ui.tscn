@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://cncggbo1740x1"]
+
+[ext_resource type="Script" path="res://UI Elements/Player UI/ui.gd" id="1_gum4j"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ntm1k"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_no1dg"]
+texture = SubResource("CanvasTexture_ntm1k")
+modulate_color = Color(1, 0.0862745, 0.0313726, 0.282353)
+
+[node name="UI" type="Control" node_paths=PackedStringArray("health_bar")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gum4j")
+health_bar = NodePath("MarginContainer/Castle Center Container/VBoxContainer/Castle Health Progress Bar")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -51.5
+offset_right = 51.5
+offset_bottom = 54.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 16
+
+[node name="Castle Center Container" type="CenterContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Castle Center Container"]
+layout_mode = 2
+
+[node name="Castle Health Label" type="Label" parent="MarginContainer/Castle Center Container/VBoxContainer"]
+layout_mode = 2
+text = "Castle Health"
+
+[node name="Castle Health Progress Bar" type="ProgressBar" parent="MarginContainer/Castle Center Container/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxTexture_no1dg")
+value = 100.0

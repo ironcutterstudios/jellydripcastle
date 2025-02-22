@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://4g1oy4t21hcg"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_6g30s"]
-[ext_resource type="PackedScene" uid="uid://0w768jtn0w5y" path="res://components/Health Component/health_component.tscn" id="1_ocg1o"]
 [ext_resource type="Texture2D" uid="uid://c7mmwgy6bxxr2" path="res://icon.svg" id="1_s3o1u"]
+[ext_resource type="PackedScene" uid="uid://cxx0u15p2dvnk" path="res://components/Jelly Storage Component/jelly_storage_component.tscn" id="4_72ueo"]
 [ext_resource type="PackedScene" uid="uid://dcixsylpwfdsq" path="res://entities/player/gun/gun.tscn" id="4_og3nm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tx6gl"]
@@ -18,9 +18,9 @@ texture = ExtResource("1_s3o1u")
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_tx6gl")
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("body") instance=ExtResource("1_ocg1o")]
-body = NodePath("..")
-
 [node name="Player Center" type="Marker2D" parent="."]
 
 [node name="Gun" parent="Player Center" instance=ExtResource("4_og3nm")]
+
+[node name="JellyStorageComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_72ueo")]
+player = NodePath("..")

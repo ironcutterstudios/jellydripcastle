@@ -1,21 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckycts0nkwthr"]
+[gd_scene load_steps=6 format=3 uid="uid://ckycts0nkwthr"]
 
 [ext_resource type="PackedScene" uid="uid://4g1oy4t21hcg" path="res://entities/player/player.tscn" id="1_20h4g"]
+[ext_resource type="PackedScene" uid="uid://cncggbo1740x1" path="res://UI Elements/Player UI/ui.tscn" id="2_g1dm6"]
 [ext_resource type="PackedScene" uid="uid://dpe22akum3is1" path="res://entities/castle/castle.tscn" id="2_q2m2p"]
+[ext_resource type="PackedScene" uid="uid://b6bg6wxoln6r5" path="res://entities/enemies/walking enemy/walking_enemy.tscn" id="4_cbsod"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_i5nxc"]
 
 [node name="MainGame" type="Node2D"]
 
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Game"
-
 [node name="Player" parent="." instance=ExtResource("1_20h4g")]
 z_index = 2
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, -418)
+zoom = Vector2(0.4, 0.4)
+
+[node name="UI" parent="Player/Camera2D" groups=["ui"] instance=ExtResource("2_g1dm6")]
+unique_name_in_owner = true
+offset_top = -810.0
+offset_bottom = -810.0
 
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(0, 376)
@@ -25,4 +29,7 @@ scale = Vector2(1.00898, 0.925498)
 shape = SubResource("WorldBoundaryShape2D_i5nxc")
 
 [node name="Castle" parent="." instance=ExtResource("2_q2m2p")]
-position = Vector2(-410, -270)
+position = Vector2(-410, -206)
+
+[node name="WalkingEnemy" parent="." instance=ExtResource("4_cbsod")]
+position = Vector2(948, 353)
