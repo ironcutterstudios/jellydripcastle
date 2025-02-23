@@ -29,6 +29,7 @@ tick_damage = 1.0
 autostart = true
 
 [node name="Attackable Area" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attackable Area"]
 position = Vector2(471, 0)

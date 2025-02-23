@@ -1,13 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://ckycts0nkwthr"]
+[gd_scene load_steps=9 format=3 uid="uid://ckycts0nkwthr"]
 
 [ext_resource type="PackedScene" uid="uid://4g1oy4t21hcg" path="res://entities/player/player.tscn" id="1_20h4g"]
+[ext_resource type="Script" path="res://scenes/Game/main_game.gd" id="1_fwap5"]
 [ext_resource type="PackedScene" uid="uid://cncggbo1740x1" path="res://UI Elements/Player UI/ui.tscn" id="2_g1dm6"]
 [ext_resource type="PackedScene" uid="uid://dpe22akum3is1" path="res://entities/castle/castle.tscn" id="2_q2m2p"]
 [ext_resource type="PackedScene" uid="uid://b6bg6wxoln6r5" path="res://entities/enemies/walking enemy/walking_enemy.tscn" id="4_cbsod"]
+[ext_resource type="PackedScene" uid="uid://bd7exlqtqkmxt" path="res://entities/enemy spawner/enemy_spawner.tscn" id="5_4jdum"]
+[ext_resource type="PackedScene" uid="uid://bj4hglj2fd5a7" path="res://components/Castle Jelly Deposit Component/castle_jelly_deposit_component.tscn" id="6_glc8f"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_i5nxc"]
 
-[node name="MainGame" type="Node2D"]
+[node name="MainGame" type="Node2D" groups=["game_manager"]]
+script = ExtResource("1_fwap5")
 
 [node name="Player" parent="." instance=ExtResource("1_20h4g")]
 z_index = 2
@@ -33,3 +37,10 @@ position = Vector2(-410, -206)
 
 [node name="WalkingEnemy" parent="." instance=ExtResource("4_cbsod")]
 position = Vector2(948, 353)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("5_4jdum")]
+position = Vector2(1411, 365)
+enemy_path = "res://entities/enemies/walking enemy/walking_enemy.tscn"
+
+[node name="CastleJellyDepositComponent" parent="." instance=ExtResource("6_glc8f")]
+position = Vector2(-38, 343)

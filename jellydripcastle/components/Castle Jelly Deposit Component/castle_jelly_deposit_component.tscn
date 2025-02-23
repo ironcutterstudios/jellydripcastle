@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj4hglj2fd5a7"]
+
+[ext_resource type="Script" path="res://components/Castle Jelly Deposit Component/castle_jelly_deposit_component.gd" id="1_v6obi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s22ow"]
+size = Vector2(128, 100)
+
+[node name="CastleJellyDepositComponent" type="Area2D"]
+collision_mask = 4
+script = ExtResource("1_v6obi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_s22ow")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

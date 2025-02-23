@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://b6bg6wxoln6r5"]
+[gd_scene load_steps=10 format=3 uid="uid://b6bg6wxoln6r5"]
 
+[ext_resource type="Script" path="res://entities/enemies/walking enemy/walking_enemy.gd" id="1_76kcx"]
 [ext_resource type="Texture2D" uid="uid://c7mmwgy6bxxr2" path="res://icon.svg" id="1_x1v3n"]
 [ext_resource type="PackedScene" uid="uid://0w768jtn0w5y" path="res://components/Health Component/health_component.tscn" id="2_pfa7s"]
 [ext_resource type="PackedScene" uid="uid://cpdoj7ke3msge" path="res://components/Enemy Movement Component/enemy_movement_component.tscn" id="3_106e4"]
@@ -16,6 +17,8 @@ texture = SubResource("CanvasTexture_uh82c")
 modulate_color = Color(0.94902, 0, 0, 0.388235)
 
 [node name="WalkingEnemy" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 2
+script = ExtResource("1_76kcx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 0, 1)
@@ -66,10 +69,9 @@ attack_component = NodePath("../EnemyAttackComponent")
 
 [node name="Cooldown Rate" type="Timer" parent="."]
 
-[node name="EnemyAttackComponent" parent="." node_paths=PackedStringArray("state_manager", "attack_timer") instance=ExtResource("5_06wj1")]
+[node name="EnemyAttackComponent" parent="." node_paths=PackedStringArray("state_manager", "health_component", "attack_timer") instance=ExtResource("5_06wj1")]
 state_manager = NodePath("../Enemy State Manager")
+health_component = NodePath("../HealthComponent")
 attack_timer = NodePath("../Cooldown Rate")
-cooldown_rate = 2.0
-DAMAGE = 10.0
 
 [connection signal="timeout" from="Cooldown Rate" to="EnemyAttackComponent" method="_on_cooldown_rate_timeout"]

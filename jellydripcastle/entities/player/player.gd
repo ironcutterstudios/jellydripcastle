@@ -6,12 +6,16 @@ signal check_storage
 ## Collect 1 jelly from ground
 signal jelly_collected
 
+## Player Speed
 @export var SPEED = 300.0
+## Player Jump Height
 @export var JUMP_VELOCITY = -400.0
+## Player Projectile
 @export var BULLET : String
-
 ## Jelly Storage Component
 @export var jelly_component : JellyStorageComponent
+
+var total_cash : int = 0
 
 func _ready() -> void:
 	check_storage.connect(jelly_component.is_space_available)
@@ -42,9 +46,14 @@ func shoot():
 	bullet.transform = Transform2D(self.get_local_mouse_position().angle(), self.position)
 
 ## Update jelly storage and destroy collided jelly
-func pickup_jelly():
+func pickup_jelly(jelly : Jelly):
+	jelly_collected.connect(jelly.picked_up)
 	emit_signal("jelly_collected")
 
 ## Signaled from jelly collided with
-func collide_jelly():
-	emit_signal("check_storage")
+func collide_jelly(jelly : Jelly):
+	emit_signal("check_storage", jelly)
+	
+func collide_cash(cash : Cash):
+	total_cash += cash.cash_value
+	print("cash: " + str(total_cash))

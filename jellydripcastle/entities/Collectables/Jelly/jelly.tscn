@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxj3esy4epxdl"]
+
+[ext_resource type="Texture2D" uid="uid://c7mmwgy6bxxr2" path="res://icon.svg" id="1_jle48"]
+[ext_resource type="Script" path="res://entities/Collectables/Jelly/jelly.gd" id="1_o6fb7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6ttrk"]
+radius = 19.0263
+
+[node name="Jelly" type="Area2D"]
+collision_mask = 4
+script = ExtResource("1_o6fb7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0.739715, 1.92523e-07, 1)
+scale = Vector2(0.182578, 0.233296)
+texture = ExtResource("1_jle48")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6ttrk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

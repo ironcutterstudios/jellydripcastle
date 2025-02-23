@@ -4,6 +4,10 @@ extends Node
 
 signal update_ui_castle_health
 signal update_ui_castle_max_health
+signal game_over
+
+## Node managing the game
+@onready var game_manager = get_tree().get_first_node_in_group("game_manager")
 
 ## Max health of entity
 @export var max_health : float = 10.0
@@ -20,6 +24,7 @@ signal update_ui_castle_max_health
 var player_ui : Control
 
 func _ready() -> void:
+	game_over.connect(game_manager.on_game_over)
 	player_ui = get_tree().get_first_node_in_group("ui")
 	current_health = max_health
 	update_ui_castle_health.connect(player_ui.update_health_bar)
@@ -40,8 +45,10 @@ func heal(heal_amount : float):
 	emit_signal("update_ui_castle_health", current_health)
 	
 func die():
-	castle.call_deferred("queue_free")
+	emit_signal("game_over")
 
 func _on_damage_tick_timer_timeout() -> void:
 	take_damage(tick_damage)
-	
+
+func get_health():
+	return current_health
