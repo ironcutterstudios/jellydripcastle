@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bktcs85cjgfmk"]
+
+[ext_resource type="Script" path="res://State Managers/Enemy State Manager/enemy_state_manager.gd" id="1_g5jdo"]
+
+[node name="Enemy State Manager" type="Node"]
+script = ExtResource("1_g5jdo")

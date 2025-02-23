@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://6nnipd8kaf6k"]
+
+[ext_resource type="Script" path="res://components/Enemy Attack Component/enemy_attack_component.gd" id="1_hrpv4"]
+
+[node name="EnemyAttackComponent" type="Node"]
+script = ExtResource("1_hrpv4")

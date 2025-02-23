@@ -8,9 +8,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tx6gl"]
 size = Vector2(130, 128)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("jelly_component")]
 script = ExtResource("1_6g30s")
 BULLET = "res://entities/player/gun/bullet/bullet.tscn"
+jelly_component = NodePath("JellyStorageComponent")
 
 [node name="Player Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_s3o1u")

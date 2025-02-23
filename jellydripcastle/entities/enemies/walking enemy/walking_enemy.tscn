@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6bg6wxoln6r5"]
+[gd_scene load_steps=9 format=3 uid="uid://b6bg6wxoln6r5"]
 
 [ext_resource type="Texture2D" uid="uid://c7mmwgy6bxxr2" path="res://icon.svg" id="1_x1v3n"]
 [ext_resource type="PackedScene" uid="uid://0w768jtn0w5y" path="res://components/Health Component/health_component.tscn" id="2_pfa7s"]
+[ext_resource type="PackedScene" uid="uid://cpdoj7ke3msge" path="res://components/Enemy Movement Component/enemy_movement_component.tscn" id="3_106e4"]
+[ext_resource type="PackedScene" uid="uid://bktcs85cjgfmk" path="res://State Managers/Enemy State Manager/enemy_state_manager.tscn" id="4_spjqr"]
+[ext_resource type="PackedScene" uid="uid://6nnipd8kaf6k" path="res://components/Enemy Attack Component/enemy_attack_component.tscn" id="5_06wj1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xibc5"]
 size = Vector2(52, 60)
@@ -53,3 +56,20 @@ theme_override_constants/margin_bottom = 64
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxTexture_vugke")
 value = 100.0
+
+[node name="EnemyMovementComponent" parent="." node_paths=PackedStringArray("body", "state_manager") instance=ExtResource("3_106e4")]
+body = NodePath("..")
+state_manager = NodePath("../Enemy State Manager")
+
+[node name="Enemy State Manager" parent="." node_paths=PackedStringArray("attack_component") instance=ExtResource("4_spjqr")]
+attack_component = NodePath("../EnemyAttackComponent")
+
+[node name="Cooldown Rate" type="Timer" parent="."]
+
+[node name="EnemyAttackComponent" parent="." node_paths=PackedStringArray("state_manager", "attack_timer") instance=ExtResource("5_06wj1")]
+state_manager = NodePath("../Enemy State Manager")
+attack_timer = NodePath("../Cooldown Rate")
+cooldown_rate = 2.0
+DAMAGE = 10.0
+
+[connection signal="timeout" from="Cooldown Rate" to="EnemyAttackComponent" method="_on_cooldown_rate_timeout"]

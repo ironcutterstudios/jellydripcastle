@@ -1,12 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpe22akum3is1"]
+[gd_scene load_steps=6 format=3 uid="uid://dpe22akum3is1"]
 
 [ext_resource type="Texture2D" uid="uid://c7mmwgy6bxxr2" path="res://icon.svg" id="1_t32b6"]
 [ext_resource type="PackedScene" uid="uid://ddd8rwmi8pls3" path="res://components/Castle Health Component/castle_health_component.tscn" id="2_4oyaa"]
+[ext_resource type="PackedScene" uid="uid://bwb2h1fi3cpv5" path="res://components/Castle Attack Range Component/castle_attack_range_component.tscn" id="3_fyjm4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_so5aw"]
 size = Vector2(612, 1198)
 
-[node name="Castle" type="Area2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iy02i"]
+size = Vector2(324, 1198)
+
+[node name="Castle" type="Area2D" groups=["castle"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0, 1, 0, 1)
@@ -24,4 +28,14 @@ tick_damage = 1.0
 [node name="Damage Tick Timer" type="Timer" parent="."]
 autostart = true
 
+[node name="Attackable Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attackable Area"]
+position = Vector2(471, 0)
+shape = SubResource("RectangleShape2D_iy02i")
+
+[node name="CastleAttackRangeComponent" parent="." instance=ExtResource("3_fyjm4")]
+
 [connection signal="timeout" from="Damage Tick Timer" to="CastleHealthComponent" method="_on_damage_tick_timer_timeout"]
+[connection signal="body_entered" from="Attackable Area" to="CastleAttackRangeComponent" method="_on_attackable_area_body_entered"]
+[connection signal="body_exited" from="Attackable Area" to="CastleAttackRangeComponent" method="_on_attackable_area_body_exited"]

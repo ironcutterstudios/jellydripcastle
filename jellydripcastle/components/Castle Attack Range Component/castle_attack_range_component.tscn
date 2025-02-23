@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwb2h1fi3cpv5"]
+
+[ext_resource type="Script" path="res://components/Castle Attack Range Component/castle_attack_range_component.gd" id="1_p230m"]
+
+[node name="CastleAttackRangeComponent" type="Node"]
+script = ExtResource("1_p230m")
